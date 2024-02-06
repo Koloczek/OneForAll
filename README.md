@@ -1,20 +1,37 @@
-# Generowanie haseł
+# AIO SOC 
+Struktura programu zawarta obejmuje kilka elementów:
+
+**Główny katalog**: zawiera program.sh i README.md.\
+**Katalog pliki**: Zawiera skrypt INSTALL.ps1 i menu.py.\
+Dodatkowo, w podkatalogu Programs znajdują się różne skrypty Pythona, takie jak:\
+***Bandwith_Monitor.py, generowanie_hasel.py, Odszyfrowywanie_hasel.py, skaner.py, Sniffer.py, sprawdzanie_hasla.py***.
+
+### Główny program - $\color{orange}{\textsf{menu.py}}$ : Jest to główny skrypt, który służy jako punkt wejścia do aplikacji
+
+### Klasy:
+***Bandwith_Monitor.py***: Moduł do monitorowania przepustowości sieci.\
+***generowanie_hasel.py***: Moduł do generowania haseł.\
+***Odszyfrowywanie_hasel.py***: Moduł do odszyfrowywania haseł.\
+***skaner.py***: Moduł do skanowania sieci.\
+***Sniffer.py***: Moduł sniffera sieciowego.\
+***sprawdzanie_hasla.py***: Moduł do sprawdzania siły hasła.
+
+## Generowanie haseł
 
 Kod stanowi narzędzie do generowania bezpiecznych haseł, które użytkownik może dostosować poprzez wybór długości. Oferuje również opcję dodatkowego zabezpieczenia poprzez zastosowanie szyfru Cezara, umożliwiając użytkownikowi wybór między prostym hasłem a hasłem zaszyfrowanym dla dodatkowej warstwy ochrony.
 
 *Szyfr Cezara jest prostym, ale niezwykle starym sposobem na zabezpieczenie informacji, polegającym na przesuwaniu liter alfabetu o ustaloną liczbę miejsc. Jest to jednak metoda szyfrowania o niskiej bezpieczeństwie, ponieważ łatwo ją złamać poprzez analizę częstotliwości występowania liter lub próbę siłową.*
 
-## Importowanie bibliotek
+### Importowanie bibliotek
 ```python
 import string
 import random
-
 ```
 **Biblioteka string**: Jest wykorzystywana do uzyskania zestawu znaków, które mogą być użyte do tworzenia haseł. Przy użyciu string.ascii_letters (które łączy małe i wielkie litery alfabetu) oraz string.digits (które zawiera cyfry od 0 do 9), kod tworzy pulę znaków, z której będą losowo wybierane poszczególne znaki hasła.
 
 **Biblioteka random**: Umożliwia losowy wybór znaków z puli utworzonej za pomocą biblioteki string do generowania haseł. Funkcja random.choice() jest używana do wybierania pojedynczego znaku z połączonego ciągu liter i cyfr za każdym razem, gdy jest wywoływana w pętli for, która powtarza się tyle razy, ile znaków ma mieć hasło (określone przez użytkownika).
 
-## generate password
+### generate password
 ```python
 class gen_passwd:
     def run(self):
@@ -30,7 +47,6 @@ class gen_passwd:
                     print("Proszę podać liczbę.")
             characters = string.ascii_letters + string.digits
             return ''.join(random.choice(characters) for i in range(length))
-
 ```
 Wewnątrz metody **run()** zdefiniowana jest funkcja pomocnicza **generate_password()**, która służy do generowania losowego hasła. 
 
@@ -40,7 +56,7 @@ Funkcja **generate_password()** rozpoczyna się od nieskończonej pętli while, 
 
 Po wprowadzeniu poprawnej długości hasła, funkcja przechodzi do tworzenia samego hasła. Do tego celu używane są znaki z string.ascii_letters (łączące małe i wielkie litery alfabetu angielskiego) oraz string.digits (cyfry od 0 do 9). Funkcja random.choice(characters) losowo wybiera znak z połączonego ciągu tych znaków, a join() łączy te losowo wybrane znaki w jedno hasło o długości określonej przez użytkownika.
 
-## Cezar
+### Cezar
 ```python
 def cezar(password, shift):
     result = ""
@@ -50,8 +66,7 @@ def cezar(password, shift):
             result += chr((ord(char) + shift - start) % 26 + start)
         else:
             result += char
-    return result
-        
+    return result        
 ```
 
 Funkcja **cezar()** implementuje prosty szyfr przesuwający, znany również jako szyfr Cezara, który jest jedną z najstarszych znanych technik szyfrowania.
@@ -64,7 +79,7 @@ Szyfrowanie liter: Jeżeli znak jest literą, funkcja określa punkt startowy al
 
 Po przetworzeniu wszystkich znaków w haśle, funkcja zwraca wynikowy ciąg, który jest zaszyfrowaną wersją oryginalnego hasła.
 
-## Main
+### Main
 ```python
 def main():
     password = generate_password()
@@ -87,7 +102,6 @@ def main():
     input("Naciśnij Enter, aby kontynuować")
         
 main()
-        
 ```
 Funkcja main() pełni rolę punktu wejścia do procesu generowania i opcjonalnego szyfrowania hasła.
 Użytkownik jest następnie proszony o wybór algorytmu szyfrowania. Może wybrać zastosowanie szyfru Cezara (opcja 1) lub pozostawienie hasła bez zmian (opcja 2).
