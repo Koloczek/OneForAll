@@ -42,15 +42,15 @@ Po wprowadzeniu poprawnej długości hasła, funkcja przechodzi do tworzenia sam
 
 ## Cezar
 ```python
-        def cezar(password, shift):
-            result = ""
-            for char in password:
-                if char.isalpha():
-                    start = 65 if char.isupper() else 97
-                    result += chr((ord(char) + shift - start) % 26 + start)
-                else:
-                    result += char
-            return result
+def cezar(password, shift):
+    result = ""
+    for char in password:
+        if char.isalpha():
+            start = 65 if char.isupper() else 97
+            result += chr((ord(char) + shift - start) % 26 + start)
+        else:
+            result += char
+    return result
         
 ```
 
