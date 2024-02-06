@@ -66,27 +66,27 @@ Po przetworzeniu wszystkich znaków w haśle, funkcja zwraca wynikowy ciąg, kt�
 
 ## Main
 ```python
-        def main():
-            password = generate_password()
-            print("Wygenerowane hasło:", password)
+def main():
+    password = generate_password()
+    print("Wygenerowane hasło:", password)
         
-            print("Wybierz algorytm:\n1. Szyfr Cezara\n2. Brak")
-            algorithm_choice = input("Wybór (1 lub 2): ")
+    print("Wybierz algorytm:\n1. Szyfr Cezara\n2. Brak")
+    algorithm_choice = input("Wybór (1 lub 2): ")
         
-            if algorithm_choice == '1':
-                shift = int(input("Podaj przesunięcie dla szyfru Cezara: "))
-                processed_password = cezar(password, shift)
-            elif algorithm_choice == '2':
-                processed_password = password
+    if algorithm_choice == '1':
+        shift = int(input("Podaj przesunięcie dla szyfru Cezara: "))
+        processed_password = cezar(password, shift)
+    elif algorithm_choice == '2':
+        processed_password = password
         
-            if algorithm_choice in ['1']:
-                print("Zaszyfrowane hasło:", processed_password)
-            if algorithm_choice == '2':
-                print("Hasło",password)
+    if algorithm_choice in ['1']:
+        print("Zaszyfrowane hasło:", processed_password)
+    if algorithm_choice == '2':
+        print("Hasło",password)
         
-            input("Naciśnij Enter, aby kontynuować")
+    input("Naciśnij Enter, aby kontynuować")
         
-        main()
+main()
         
 ```
 Funkcja main() pełni rolę punktu wejścia do procesu generowania i opcjonalnego szyfrowania hasła.
