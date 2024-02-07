@@ -1,3 +1,5 @@
+apt-get install pipx
+
 pip install ping3
 pip install colorama
 pip install pyfiglet
