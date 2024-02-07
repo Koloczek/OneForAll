@@ -110,4 +110,48 @@ Jeśli użytkownik wybierze szyfr Cezara, funkcja prosi o podanie przesunięcia,
 
 Na koniec, w zależności od dokonanego wyboru, wyświetlane jest albo zaszyfrowane hasło (jeśli wybrano szyfr Cezara), albo oryginalne hasło (jeśli nie wybrano szyfrowania).
 
+## Odszyfrowywanie haseł
 
+Służy do deszyfrowania haseł zakodowanych za pomocą szyfru Cezara. Użytkownik jest proszony o podanie hasła oraz wartości przesunięcia, a następnie program odwraca szyfrowanie i wyświetla oryginalne hasło.
+```python
+class decryp_passwd:
+    def run(self):
+        def caesar_decipher(password, shift):
+            # Funkcja odwracająca szyfr Cezara
+            deciphered = ""
+            for char in password:
+                if char.isupper():
+                    deciphered += chr((ord(char) - shift - 65) % 26 + 65)
+                elif char.islower():
+                    deciphered += chr((ord(char) - shift - 97) % 26 + 97)
+                else:
+                    deciphered += char
+            return deciphered
+```
+
+Przechodzi przez każdy znak w podanym haśle **(password)** i sprawdza, czy dany znak jest dużą literą **(char.isupper())** lub małą literą **(char.islower())**.
+
+Dla liter oblicza ich pozycję w alfabecie, a następnie przesuwa je wstecz o określoną wartość **(shift)**. Jeżeli znaki nie są literami, dodaje je do rozwiązania. 
+
+Na samym końcu otrzymujemy rozszyfrowane hasło.
+
+```python
+print("Podaj hasło do odszyfrowania:")
+password = input("Hasło: ")
+
+print("Algorytmem szyfrująącem jest: 'Szyfr Cezara'")
+
+shift = int(input("Podaj przesunięcie dla szyfru Cezara: "))
+decrypted_password = caesar_decipher(password, shift)
+        
+if decrypted_password is not None:
+    print("Odszyfrowane hasło:", decrypted_password)
+
+input("Naciśnij Enter, aby kontynuować")
+```
+
+Program prosi użytkownika o wprowadzenie hasła, które ma zostać odszyfrowane, dane które wpisał użytkownik do programu są przechowywane w zmiennej **'password'**
+
+Użytkownik jest proszony o podanie wartości przesunięcia użytej w szyfrze Cezara. Ta wartość jest przechwytywana, konwertowana na liczbę całkowitą i przechowywana w zmiennej **'shift'**
+
+Jeśli odszyfrowane hasło zostanie pomyślnie utworzone (czyli **decrypted_password** nie jest **None**), program wyświetla odszyfrowane hasło.
