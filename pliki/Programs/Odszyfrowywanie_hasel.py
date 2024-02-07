@@ -12,13 +12,6 @@ class decryp_passwd:
                     deciphered += char
             return deciphered
 
-        def xor_decipher(password, key):
-            # Funkcja odwracająca szyfrowanie XOR
-            deciphered = ""
-            for i in range(len(password)):
-                deciphered += chr(ord(password[i]) ^ ord(key[i % len(key)]))
-            return deciphered
-
         print("Podaj hasło do odszyfrowania:")
         password = input("Hasło: ")
 
