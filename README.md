@@ -155,3 +155,70 @@ Program prosi użytkownika o wprowadzenie hasła, które ma zostać odszyfrowane
 Użytkownik jest proszony o podanie wartości przesunięcia użytej w szyfrze Cezara. Ta wartość jest przechwytywana, konwertowana na liczbę całkowitą i przechowywana w zmiennej **'shift'**
 
 Jeśli odszyfrowane hasło zostanie pomyślnie utworzone (czyli **decrypted_password** nie jest **None**), program wyświetla odszyfrowane hasło.
+
+## Sprawdzanie hasła według kryteriów
+
+Program prosi użytkownika o wprowadzenie hasła, a następnie ocenia jego siłę na podstawie kryteriów takich jak długość, obecność wielkich i małych liter, cyfr oraz znaków specjalnych. Na koniec wypisuje ocenę hasła. 
+
+Kryteria są ustalone przez nas, można modyfikować według uznania.
+
+```python
+class passwd:
+    def run(self):
+        def password():
+            password = input("Proszę wprowadzić hasło: ")
+    
+        # Zdefiniowanie zmiennych
+    
+            dlugosc = len(password) >= 8   
+            duze = any(char.isupper() for char in password) 
+            male = any(char.islower() for char in password) 
+            liczby = any(char.isdigit() for char in password) 
+            znaki_specjalne = any(not char.isalnum() for char in password)
+
+```
+password = input("Proszę wprowadzić hasło: ") - prosi użytkownika o wprowadzenie hasła i przypisuje wprowadzoną wartość do zmiennej **password**.
+
+Następnie definiujemy pięć zmiennych, które oceniają różne aspekty bezpieczeństwa wprowadzonego hasła:
+
+**dlugosc** - sprawdza, czy długość hasła jest większa lub równa 8 znakom. Jeśli tak, zmienna przyjmuje wartość **True**; w przeciwnym razie False.
+
+**duze** - ocenia, czy hasło zawiera co najmniej jedną wielką literę.
+
+**male** - działa podobnie do duze, ale sprawdza obecność co najmniej jednej małej litery w haśle.
+
+**liczby** - sprawdza, czy w haśle znajduje się co najmniej jedna cyfra
+
+**znaki_specjalne** - ocenia, czy hasło zawiera co najmniej jeden znak specjalny
+
+```python
+
+# Sprawdzanie warunków
+    
+if dlugosc and duze and male and liczby and znaki_specjalne:
+    return "Świetne"
+elif dlugosc and (duze or male) and liczby:
+    return "Bezpieczne"
+elif dlugosc and (duze or male):
+    return "Poprawne"
+elif dlugosc:
+    return "Słabe"
+else:
+    return "Niebezpieczne"
+    
+# Wypisuje wynik 
+result = password()
+print(result)
+    
+input("Naciśnij Enter, aby kontynuować")
+
+```
+
+Tutaj natomiast oceniana jest siła hasła przy użyciu serii instrukcji warunkowych if, elif, else, opierając się na wcześniej zdefiniowanych zmiennych dlugosc, duze, male, liczby, znaki_specjalne.
+
+- Jeśli hasło spełnia wszystkie kryteria (jest dostatecznie długie, zawiera wielkie i małe litery, cyfry oraz znaki specjalne), funkcja zwraca ocene hasła jako: "Świetne".
+- Jeśli hasło jest dostatecznie długie, zawiera co najmniej jedną wielką lub małą literę oraz co najmniej jedną cyfrę, ale nie wymaga obecności znaków specjalnych, funkcja zwraca ocene hasła jako: "Bezpieczne".
+- Jeśli hasło jest dostatecznie długie i zawiera co najmniej jedną wielką lub małą literę (bez wymogu cyfr lub znaków specjalnych), funkcja zwraca ocenę hasła jako: "Poprawne".
+- Jeśli hasło jest tylko dostatecznie długie, bez dodatkowych wymagań, funkcja zwraca ocenę hasła jako: "Słabe".
+
+  W każdym innym przypadku (gdy żadne z powyższych kryteriów nie jest spełnione), funkcja zwraca ocenę hasła jako: "Niebezpieczne".
