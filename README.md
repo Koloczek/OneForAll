@@ -16,6 +16,139 @@ Dodatkowo, w podkatalogu Programs znajdują się różne skrypty Pythona, takie 
 ***Sniffer.py***: Moduł sniffera sieciowego.\
 ***sprawdzanie_hasla.py***: Moduł do sprawdzania siły hasła.
 
+## Meny.py
+**Ten program to kompleksowe narzędzie typu Wszystko-w-Jednym Centrum Operacji Bezpieczeństwa (AIO SOC), opracowane przez Jakuba i Kacpra, które oferuje szereg narzędzi do zarządzania bezpieczeństwem i siecią. Zostało zbudowane przy użyciu Pythona i korzysta z kilku zewnętrznych bibliotek.**
+
+```python
+import os
+import subprocess
+import time
+import sys
+import pyfiglet
+from colorama import Fore, Style
+from Programs.generowanie_hasel import gen_passwd
+from Programs.Odszyfrowywanie_hasel import decryp_passwd
+from Programs.sprawdzanie_hasla import passwd
+from Programs.skaner import scanner
+from Programs.Sniffer import sniffer
+from Programs.Bandwith_Monitor import bandwith
+
+
+
+def ASCII_art():
+    Banners = "AIO SOC"
+    Subscript = "                                              Powered by Python©"
+    ASCII_art_1 = pyfiglet.figlet_format(Banners, font='colossal')
+    for col in [
+        Fore.RED, Fore.GREEN, Fore.BLUE, Fore.CYAN, Fore.YELLOW
+    ] * 10 + [Fore.WHITE]:
+        print(col + ASCII_art_1 + Subscript)
+        time.sleep(0.05)
+        os.system("clear")
+    print(Fore.WHITE + ASCII_art_1 + Subscript)
+
+def run_script_in_new_terminal(script_name):
+
+    subprocess.Popen(["gnome-terminal", "--", "python3", script_name])
+
+ASCII_art()
+
+
+def print_header():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    Banners = "AIO SOC"
+    Subscript = "                                              Powered by Python©"
+    ASCII_art_2 = pyfiglet.figlet_format(Banners, font='colossal')
+    print(ASCII_art_2 + Subscript)
+    print("")
+    print("       AIO SOC - All-In-One Security Operations Center")
+    print("            Twórcy: Jakub 72903 oraz Kacper 72899")
+    print("\nWitaj w menu głównym!\n")
+
+def run_script(script_name):
+    if os.name == 'nt':  # dla Windows
+        os.system(f'start cmd /c python {script_name}')
+    else:  #Linux
+        os.system(f'gnome-terminal -e "python {script_name}"')
+
+def main_menu():
+    while True:
+        print_header()
+        print("1. Zarządzanie Hasłami")
+        print("2. Bezpieczeństwo Sieci")
+        print("3. Wyjście\n")
+        choice = input("Wybierz kategorię: ")
+        if choice == '1':
+            passwords_menu()
+        elif choice == '2':
+            network_security_menu()
+        elif choice == '3':
+            print("Dziękujemy za skorzystanie z programu AIO SOC")
+            time.sleep(3)
+            os.system("clear")
+            break
+        else:
+            print("Nieprawidłowy wybór. Spróbuj ponownie.")
+    
+def passwords_menu():
+    while True:
+        print_header()
+        print("Kategoria Hasła:\n")
+        print("1. Odszyfrowywanie haseł")
+        print("2. Generowanie haseł")
+        print("3. Sprawdzanie hasła")
+        print("4. Powrót do menu głównego\n")
+        choice = input("Wybierz opcję: ")
+        
+        if choice == '1':
+            decryp_instance  = decryp_passwd()
+            decryp_instance.run()
+        elif choice == '2':
+            gen_instance = gen_passwd()
+            gen_instance.run()
+        elif choice == '3':
+            passwd_instance = passwd()
+            passwd_instance.run()
+        elif choice == '4':
+            break
+        else:
+            print("Nieprawidłowy wybór. Spróbuj ponownie.")
+
+def network_security_menu():
+    while True:
+        print_header()
+        print("Bezpieczeństwo Sieci:\n")
+        print("1. Skaner")
+        print("2. Sniffer")
+        print("3. Test szybkości łącza")
+        print("4. Powrót do menu głównego\n")
+        choice = input("Wybierz opcję: ")
+        if choice == '1':
+            scanner_instance = scanner()
+            scanner_instance.run()
+        elif choice == '2':
+            sniffer_instance = sniffer()
+            sniffer_instance.run()
+        elif choice == '3':
+            bandwith_instance = bandwith()
+            bandwith_instance.run()
+        elif choice == '4':
+            break
+        else:
+            print("Nieprawidłowy wybór. Spróbuj ponownie.")
+
+
+if __name__ == "__main__":
+    main_menu()
+```
+Program zawiera kilka funkcji:\
+***ASCII_art:*** Funkcja ta generuje kolorowe banery ASCII z nazwą "AIO SOC", które są wyświetlane w konsoli. Banery te zmieniają kolory i są czyszczone z ekranu co pewien czas, co dodaje dynamicznego efektu wizualnego.\
+***run_script_in_new_terminal:*** Ta funkcja uruchamia określony skrypt Pythona w nowym terminalu, co pozwala na równoległe wykonywanie różnych zadań bez przerywania pracy głównego interfejsu programu.\
+***print_header:*** Funkcja ta czyści konsolę i wyświetla nagłówek programu wraz z nazwą "AIO SOC" oraz informacjami o twórcach. Jest to przygotowanie do prezentacji menu głównego programu.\
+***main_menu:*** Prezentuje główne menu programu, pozwalając użytkownikowi na wybór między zarządzaniem hasłami, bezpieczeństwem sieci lub wyjściem z programu. Każda z opcji prowadzi do dalszych podmenu związanych z daną kategorią.\
+***passwords_menu i network_security_menu:*** Te sekcje oferują specjalistyczne narzędzia - pierwsza pozwala na generowanie, dekodowanie i weryfikację haseł, druga zaś umożliwia skanowanie sieci, analizę ruchu oraz testowanie przepustowości. 
+
+
 ## Generowanie haseł
 
 Kod stanowi narzędzie do generowania bezpiecznych haseł, które użytkownik może dostosować poprzez wybór długości. Oferuje również opcję dodatkowego zabezpieczenia poprzez zastosowanie szyfru Cezara, umożliwiając użytkownikowi wybór między prostym hasłem a hasłem zaszyfrowanym dla dodatkowej warstwy ochrony.
@@ -239,5 +372,88 @@ class bandwith:
         print(f"Twoją prędkość pobierania wynosi: {download} Mb/s")
         print(f"Twoją prędkość wysyłania wynosi: {upload} Mb/s")
 ```
+
+## Skaner 
+
+**Skaner sieci** jest narzędziem do identyfikowania aktywnych urządzeń w określonym zakresie adresów IP poprzez wysyłanie do nich sygnałów ping. Narzędzie wykorzystuje biblioteki ipaddress, threading oraz subprocess do przeprowadzenia wielowątkowego skanowania, co pozwala na szybsze przeszukiwanie zakresów adresów.
+
+```python
+import ipaddress
+import threading
+import subprocess
+
+class scanner:
+    def run(self):
+        def ping_host(ip, available_hosts, timeout=2):
+            try:
+                result = subprocess.check_output(['ping', '-c', '1', '-W', str(timeout), ip], stderr=subprocess.STDOUT, universal_newlines=True)
+                if "1 packets transmitted, 1 received" in result and "0% packet loss" in result:
+                    available_hosts.append(ip)
+            except subprocess.CalledProcessError:
+                pass
+            
+        def scan_ip_range(ip_range):
+            try:
+                network = ipaddress.IPv4Network(ip_range, strict=False)
+            except ValueError:
+                print("Niepoprawny zakres adresów IP.")
+                return
+    
+            available_hosts = []
+            threads = []
+            for ip in network.hosts():
+                ip = str(ip)
+                thread = threading.Thread(target=ping_host, args=(ip, available_hosts))
+                threads.append(thread)
+                thread.start()
+    
+            for thread in threads:
+                thread.join()
+    
+            if available_hosts:
+                print("Dostępne hosty:")
+                for host in available_hosts:
+                    print(host)
+            else:
+                print("Brak dostępnych hostów w podanym zakresie.")
+    
+
+        ip_range = input("Podaj zakres adresów IP (np. 192.168.1.1/24): ")
+        scan_ip_range(ip_range)
+    
+        input("Naciśnij Enter, aby kontynuować")
+```
+
+**Metoda ***run***** jest główną funkcją klasy scanner, która koordynuje działanie skanera. Rozpoczyna się od pobrania od użytkownika zakresu adresów IP do przeskanowania, a następnie inicjuje proces skanowania tego zakresu.\
+**Funkcja ***scan_ip_range***** jest odpowiedzialna za przeprowadzenie skanowania wskazanego zakresu adresów IP. Zakres ten jest określany przez parametr ip_range.\
+**Funkcja ***ping_host***** jest odpowiedzialna za pingowanie pojedynczego adresu IP i dodawanie go do listy dostępnych hostów, jeśli odpowiedź jest pozytywna.
+
+## Sniffer
+
+Prosty sniffer pakietów sieciowych napisany w Pythonie z wykorzystaniem biblioteki PyShark. Program przechwytuje pakiety sieciowe w czasie rzeczywistym na wybranym interfejsie sieciowym przez określony czas.
+
+```python
+import pyshark
+
+class sniffer:
+    def run(self):
+        number_of_packets = int(input("Podaj czas w którym program ma przechwytywać pakiety (s): "))
+        eth_interface = input("Podaj interface sieciowy na którym chcesz nasłuchiwać: ")
+    
+        # Przechwytywanie pakietów na żywo
+        capture = pyshark.LiveCapture(interface=eth_interface)
+        capture.sniff(timeout=number_of_packets)
+        packets = [pkt for pkt in capture._packets]
+        capture.close()
+        for packet in packets:
+            print("Nowy", packet)
+
+        input("Naciśnij Enter, aby kontynuować")
+```
+***Przebieg działania programu wygląda następująco:***\
+    1. Użytkownik jest proszony o podanie czasu (w sekundach), przez który program ma przechwytywać pakiety.\
+    2. Następnie program prosi użytkownika o podanie nazwy interfejsu sieciowego, na którym ma zostać przeprowadzone przechwytywanie.\
+    3. Po otrzymaniu obu danych wejściowych, program inicjuje przechwytywanie pakietów na żywo za pomocą klasy **pyshark.LiveCapture**,\ podając jako argument nazwę interfejsu sieciowego.\ **Metoda sniff()** jest następnie wywoływana z określonym wcześniej czasem jako limit, co uruchamia proces przechwytywania pakietów przez określony czas.\
+    4. Po zakończeniu przechwytywania, program przechodzi przez wszystkie zebrane pakiety i wyświetla informacje o każdym z nich na konsoli.\ W ten sposób użytkownik może zobaczyć szczegóły przechwyconych pakietów.
 
 
