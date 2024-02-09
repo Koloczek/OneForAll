@@ -222,3 +222,22 @@ Tutaj natomiast oceniana jest siła hasła przy użyciu serii instrukcji warunko
 - Jeśli hasło jest tylko dostatecznie długie, bez dodatkowych wymagań, funkcja zwraca ocenę hasła jako: "Słabe".
 
   W każdym innym przypadku (gdy żadne z powyższych kryteriów nie jest spełnione), funkcja zwraca ocenę hasła jako: "Niebezpieczne".
+
+## Sprawdzanie prędkości internetu
+
+Program mierzy prędkość pobierania i wysyłania internetu użytkownika za pomocą biblioteki speedtest. Po obliczeniu prędkości w megabitach na sekundę, wyświetla wynik.
+
+```python
+import speedtest
+
+class bandwith:
+    def run(self):
+        speed = speedtest.Speedtest()
+
+        download = round((speed.download()/1048576),2)
+        upload = round((speed.upload()/1048576),2)
+        print(f"Twoją prędkość pobierania wynosi: {download} Mb/s")
+        print(f"Twoją prędkość wysyłania wynosi: {upload} Mb/s")
+```
+
+
