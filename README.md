@@ -1,6 +1,5 @@
 # <img src="pliki/python_logo.png" alt="Balancer" height="128px"> <img src="pliki/SOC_logo-cutout.png" alt="Balancer" height="128px">
 
-pliki/SOC_logo-cutout.png
 # AIO SOC 
 Struktura programu zawarta obejmuje kilka elementów:
 
