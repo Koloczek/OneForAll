@@ -1,5 +1,7 @@
 sudo apt-get install pipx
 sudo apt install tshark
+pipx ensurepath
+
 
 pipx install ping3
 pipx install colorama
