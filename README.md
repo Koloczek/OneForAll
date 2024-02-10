@@ -4,7 +4,7 @@
 Struktura programu zawarta obejmuje kilka elementów:
 
 **Główny katalog**: zawiera program.sh i README.md.\
-**Katalog pliki**: Zawiera skrypt INSTALL.ps1 i menu.py.\
+**Katalog pliki**: Zawiera skrypt INSTALL i menu.py.\
 Dodatkowo, w podkatalogu Programs znajdują się różne skrypty Pythona, takie jak:\
 ***Bandwith_Monitor.py, generowanie_hasel.py, Odszyfrowywanie_hasel.py, skaner.py, Sniffer.py, sprawdzanie_hasla.py***.
 
