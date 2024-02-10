@@ -68,7 +68,6 @@ def main_menu():
         else:
             print("Nieprawidłowy wybór. Spróbuj ponownie.")
     
-#print("Program stworzony przez Jakub 72903 oraz Kacper 72899")
 
 def passwords_menu():
     while True:
