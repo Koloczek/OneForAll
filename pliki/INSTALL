@@ -1,7 +1,8 @@
-apt-get install pipx
+sudo apt-get install pipx
+sudo apt install tshark
 
-pip install ping3
-pip install colorama
+pipx install ping3
+pipx install colorama
 pip install pyfiglet
 pip install pyshark
 pip install speedtest-cli
