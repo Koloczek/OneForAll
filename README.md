@@ -1,5 +1,14 @@
 # <img src="pliki/python_logo.png" alt="Balancer" height="128px">
 
+## Program został przetestowany na:
+
+| Browser                        | Supported |
+| ------------------------------ | --------- |
+| Ubuntu 22.04.3 LTS             | ✅        |
+| Debian - Parrot OS 5.0         | ✅        |
+
+*Program został przetestowany i zweryfikowany na systemach operacyjnych wymienionych powyżej. Nie gwarantujemy pełnej kompatybilności działania na innych dystrybucjach Linuxa, które nie zostały wyraźnie wskazane jako wspierane.*
+
 # AIO SOC 
 Struktura programu zawarta obejmuje kilka elementów:
 
