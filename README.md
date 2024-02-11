@@ -2,7 +2,7 @@
 
 ## Program został przetestowany na:
 
-| Browser                        | Supported |
+| System operacyjny              | Wspierane |
 | ------------------------------ | --------- |
 | Ubuntu 22.04.3 LTS             | ✅        |
 | Debian - Parrot OS 5.0         | ✅        |
