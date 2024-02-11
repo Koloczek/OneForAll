@@ -10,12 +10,14 @@
 *Program został przetestowany i zweryfikowany na systemach operacyjnych wymienionych powyżej. Nie gwarantujemy pełnej kompatybilności działania na innych dystrybucjach Linuxa, które nie zostały wyraźnie wskazane jako wspierane.*
 
 # AIO SOC 
-Struktura programu zawarta obejmuje kilka elementów:
+Struktura programu obejmuje kilka elementów:
 
 **Główny katalog**: zawiera program.sh i README.md.\
 **Katalog pliki**: Zawiera skrypt INSTALL i menu.py.\
 Dodatkowo, w podkatalogu Programs znajdują się różne skrypty Pythona, takie jak:\
 ***Bandwith_Monitor.py, generowanie_hasel.py, Odszyfrowywanie_hasel.py, skaner.py, Sniffer.py, sprawdzanie_hasla.py***.
+
+*Aby uruchomić program musimy nadać uprawnienia wykonywania "chmod +x" na program.sh*
 
 ### Główny program - $\color{orange}{\textsf{menu.py}}$ : Jest to główny skrypt, który służy jako punkt wejścia do aplikacji
 
@@ -28,7 +30,7 @@ Dodatkowo, w podkatalogu Programs znajdują się różne skrypty Pythona, takie 
 ***sprawdzanie_hasla.py***: Moduł do sprawdzania siły hasła.
 
 ## Meny.py
-**Ten program to kompleksowe narzędzie typu Wszystko-w-Jednym Centrum Operacji Bezpieczeństwa (AIO SOC), opracowane przez Jakuba i Kacpra, które oferuje szereg narzędzi do zarządzania bezpieczeństwem i siecią. Zostało zbudowane przy użyciu Pythona i korzysta z kilku zewnętrznych bibliotek.**
+**Ten program to kompleksowe narzędzie typu Wszystko-w-Jednym Centrum Operacji Bezpieczeństwa (AIO SOC), opracowane przez Jakuba i Kacpra, które oferuje szereg narzędzi do zarządzania bezpieczeństwem i siecią. Zostało zbudowane przy użyciu Pythona i wykorzystuje kilka zewnętrznych bibliotek.**
 
 ```python
 import os
@@ -304,7 +306,7 @@ Jeśli odszyfrowane hasło zostanie pomyślnie utworzone (czyli **decrypted_pass
 
 Program prosi użytkownika o wprowadzenie hasła, a następnie ocenia jego siłę na podstawie kryteriów takich jak długość, obecność wielkich i małych liter, cyfr oraz znaków specjalnych. Na koniec wypisuje ocenę hasła. 
 
-Kryteria są ustalone przez nas, można modyfikować według uznania.
+*Kryteria są ustalone przez nas, można modyfikować według uznania.*
 
 ```python
 class passwd:
